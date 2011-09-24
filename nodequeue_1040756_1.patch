@@ -1,0 +1,31 @@
+diff --git nodequeue.module nodequeue.module
+index 37ded9c..dd7b7c2 100644
+--- nodequeue.module
++++ nodequeue.module
+@@ -271,7 +271,7 @@ function nodequeue_theme() {
+       'variables' => array(),
+     ),
+     'nodequeue_subqueue_count_text' => array(
+-      'variables' => array(),
++      'variables' => array('count' => 0),
+     ),
+   );
+ }
+@@ -2449,7 +2449,7 @@ function nodequeue_subqueue_size_text($max, $count, $long = TRUE) {
+   }
+   else {
+     if ($long) {
+-      $message = theme('nodequeue_subqueue_count_text', $count);
++      $message = theme('nodequeue_subqueue_count_text', array('count' => $count));
+     }
+     else {
+       $message = $count;
+@@ -3058,6 +3058,6 @@ function theme_nodequeue_subqueue_full_text() {
+  *
+  * @ingroup themeable
+  */
+-function theme_nodequeue_subqueue_count_text($count) {
+-  return t('@count in queue', array('@count' => $count));
++function theme_nodequeue_subqueue_count_text($variables) {
++  return t('@count in queue', array('@count' => $variables['count']));
+ }
